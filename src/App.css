@@ -1,38 +1,122 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 1rem;
+  background-color: rgb(235, 235, 235);
+  min-height: 80vh;
+}
+
+.editSymbol {
+  display: flex;
+  justify-content: space-between;
+}
+
+.editSymbol i {
+  font-size: 2rem;
+}
+
+.editSymbol i:hover {
+  transform: scale(0.93);
+  cursor: pointer;
+}
+
+p {
+  font-size: 0.9rem;
+}
+
+.App li {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  flex-basis: 25rem;
+  background-color: white;
+  border-radius: 1rem;
+  gap: 0.4rem;
+  height: 38rem;
+}
+
+li:hover {
+  cursor: pointer;
+  transform: scale(1.009);
+}
+
+.price,
+.rating {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+a {
+  text-decoration: none;
+}
+.price {
+  font-size: 1.8rem;
+}
+
+ul {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-top: 1rem;
+}
+.img {
+  height: 40%;
+}
+img {
+  width: 70%;
+  height: 50%;
+  object-fit: contain;
+  align-self: center;
+}
+
+footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(41, 41, 95);
+  padding: 2rem;
+}
+
+footer li {
+  text-decoration: none;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+footer ul {
+  display: flex;
+  gap: 1rem;
+}
+.support {
+  display: flex;
+}
+.support li {
+  list-style-type: none;
 }
 
-@keyframes App-logo-spin {
-  from {
+/* loader */
+.lds-dual-ring {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: flex;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 8px solid #fff;
+  border-color: rgb(151, 20, 20) transparent rgb(54, 170, 190) transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
     transform: rotate(360deg);
   }
 }
