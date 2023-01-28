@@ -5,6 +5,7 @@ function Header() {
          <Link to="/" className="navbar-brand">
             <i className="fa fa-shopping-cart"></i> My Cart</Link>
          <Link to="/" className="navbar-brand" >Home</Link>
+         <Link to="/CurdPannel" className="navbar-brand" >Add product</Link>
       </nav>
    )
 }
