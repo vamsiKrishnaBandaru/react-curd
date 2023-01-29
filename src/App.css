@@ -60,7 +60,16 @@ a {
   font-size: 1.8rem;
 }
 .navbar {
+  text-align: center;
   margin-bottom: 0;
+}
+.header {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+}
+.header a:hover {
+  transform: scale(1.06);
 }
 ul {
   display: flex;
@@ -105,6 +114,16 @@ footer ul {
 form {
   margin-top: 2rem;
 }
+
+.form-btns {
+  display: flex;
+  justify-content: space-between;
+}
+.form-right-btns {
+  display: flex;
+  gap: 1rem;
+}
+
 /* loader */
 .lds-dual-ring {
   display: flex;

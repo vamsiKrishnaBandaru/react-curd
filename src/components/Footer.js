@@ -1,6 +1,6 @@
 function Footer() {
    return (
-      <footer>
+      <footer className="navbar navbar-dark bg-primary p-4">
          <div className="support">
             <ul>
                <li>About Us</li>

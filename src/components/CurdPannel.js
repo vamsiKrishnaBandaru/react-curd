@@ -2,30 +2,15 @@ import { Component } from "react"
 import { Link } from "react-router-dom";
 
 class CurdPannel extends Component {
-   constructor() {
-      super();
+   constructor(props) {
+      super(props);
       this.state = {
-         title: '',
+         isChanged: false,
+         isDeleted: false,
       }
    }
-   handleInput = (event) => {
-      const {
-         name,
-         value
-      } = event.target
 
-      this.setState(
-         {
-            [name]: value
-         }
-      )
-   }
    render() {
-      let item = this.props.products.filter((product) => {
-         if (product.id == this.props.match.params.id) {
-            return true
-         }
-      })[0]
       return (
          <div className="App" >
             <div className="container">
@@ -36,40 +21,70 @@ class CurdPannel extends Component {
                         <div className="row form-group">
                            <label className='form-label' htmlFor='title'>
                               Title</label>
-                           <input
-                              type="text"
-                              className='form-control input-lg'
+                           <textarea
+                              onChange={(e) => {
+                                 this.props.handelInput(e, this.props.id)
+                              }}
+                              className='textarea'
                               id='title'
                               name="title"
-                              value={item.title || ''}
-                              onChange={this.props.handleInput}
+                              defaultValue={this.props.title}
                            />
                         </div>
                         <div className="row form-group">
                            <label className='form-label' htmlFor='description'> Description</label>
-                           <input
-                              type="text"
-                              className='form-control input-lg'
+                           <textarea
+                              className='textarea'
+                              onChange={(e) => {
+                                 this.props.handelInput(e, this.props.id)
+                              }}
                               id='description'
                               name="description"
-                              value={item.description || ''}
-                              placeholder='Description'
+                              defaultValue={this.props.description}
+                              rows='4'
                            />
                         </div>
                         <div className="row form-group">
                            <label className='form-label' htmlFor='category'> Category</label>
-                           <input
-                              type="text"
-                              className='form-control input-lg'
+                           <textarea
+                              className='textarea'
+                              onChange={(e) => {
+                                 this.props.handelInput(e, this.props.id)
+                              }}
                               id='category'
                               name="category"
-                              value={item.category || ''}
+                              defaultValue={this.props.category}
                            />
                         </div>
-                        <div col>
-                           <Link to="/">
-                              <button type="button" className="btn btn-danger btn-lg" onClick={() => { this.props.delete(item.id) }}>Remove Item</button>
-                           </Link>
+                        <div className="row form-group">
+                           <label className='form-label' htmlFor='price'> Price</label>
+                           <textarea
+                              className='textarea'
+                              onChange={(e) => {
+                                 this.props.handelInput(e, this.props.id)
+                              }}
+                              id='price'
+                              name="price"
+                              defaultValue={this.props.price}
+                           />
+                        </div>
+                        <div className="form-btns">
+                           <div>
+                              <Link to="/">
+                                 <button type="button" className="btn btn-danger" onClick={() => {
+                                    this.props.delete(this.props.id)
+                                 }}>
+                                    <i className="fa-solid fa-trash-can"></i> Remove Item</button>
+                              </Link></div>
+
+                           <div>
+                              <div className="form-right-btns">
+                                 <Link to="/">
+                                    <button id="cancel" name="cancel" className="btn btn-default" value="1">Cancel</button>
+                                    <button type="submit" className="btn btn-primary">Save Changes</button>
+                                 </Link>
+                              </div>
+                           </div>
                         </div>
                      </form>
                   </div>

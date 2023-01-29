@@ -30,6 +30,19 @@ class App extends React.Component {
     this.URL = 'https://fakestoreapi.com/products'
   }
 
+  handelInput = (event, id) => {
+    console.log(event)
+    console.log(".............")
+    const array = this.state.products
+    const EditedProduct = array.find(product => {
+      return product.id === id
+    })
+    EditedProduct[event.target.id] = event.target.value
+    this.setState({
+      products: array
+    })
+  }
+
   delete = (event) => {
     let products = this.state.products.filter(product => {
       if (product.id === event) {
@@ -62,9 +75,6 @@ class App extends React.Component {
         })
     })
   }
-  handelClick = () => {
-    console.log('handelClick')
-  }
 
   componentDidMount() {
     this.FetchData(this.URL)
@@ -82,21 +92,13 @@ class App extends React.Component {
               status={this.state.status}
             />
           </Route>
-          <Route path="/product/:id" exact render={(props) => {
-            return (
-              <CurdPannel
-                {...props}
-                products={this.state.products}
-                delete={this.delete} />
-            )
-          }}>
-          </Route>
-          <Route path="/CurdPannel" exact render={(props) => {
-            return (
-              <CurdPannel
-                products={this.state.products}
-              />
-            )
+
+          <Route exact path="/product/:id" render={(props) => {
+            const id = props.match.params.id
+            const productToPass = this.state.products.find((product) => {
+              return product.id.toString() === id
+            })
+            return <CurdPannel {...props} {...productToPass} handelInput={this.handelInput} delete={this.delete} />
           }}>
           </Route>
         </Switch>
