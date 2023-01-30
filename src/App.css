@@ -193,9 +193,15 @@ footer ul {
 }
 
 @media (max-width: 768px) {
+  .header {
+    width: 100%;
+  }
   .form-btns button {
     font-size: 1.2rem;
     padding: 0.4rem;
+  }
+  .App {
+    min-height: 100vh;
   }
 
   .form-btns {
@@ -210,9 +216,28 @@ footer ul {
   .singleProduct img {
     align-self: center;
   }
+  .App ul {
+    width: auto;
+    padding: 0;
+    align-self: center;
+  }
+  .App li {
+    width: auto;
+    align-self: center;
+  }
+  footer ul {
+    flex-direction: column;
+  }
+  footer {
+    width: 100%;
+  }
 }
 @media (max-width: 458px) {
+  .header {
+    flex-direction: column;
+    align-self: center;
+  }
   .headerLeft {
-    display: none;
+    align-self: center;
   }
 }
