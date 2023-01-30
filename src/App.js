@@ -34,7 +34,6 @@ class App extends React.Component {
   addNewProduct = (data) => {
     const array = this.state.products
     let lastId = array[array.length - 1].id
-    console.log(lastId)
     const newProduct = {
       id: lastId + 1,
       title: data.title,
@@ -48,14 +47,12 @@ class App extends React.Component {
       image: data.image
     }
     array.push(newProduct)
-    console.log(array)
     this.setState({
       products: array
     })
   }
 
   handelInput = (event, id) => {
-    console.log('handelInput')
     let array = this.state.products
     const EditedProduct = array.find(product => {
       return product.id === id
@@ -67,7 +64,6 @@ class App extends React.Component {
   }
 
   delete = (event) => {
-    console.log('delete')
     let products = this.state.products.filter(product => {
       if (product.id === event) {
         return false
@@ -120,7 +116,7 @@ class App extends React.Component {
           <Route exact path="/product/:id" render={(props) => {
             const id = props.match.params.id
             const selectedProduct = this.state.products.find((product) => {
-              return product.id.toString() === id
+              return product.id === id
             })
             return <CurdPannel {...props}
               {...selectedProduct}
@@ -129,10 +125,9 @@ class App extends React.Component {
             />
           }}>
           </Route>
-          <Route path="/CurdPannel" exact render={(props) => {
-            return <AddProduct {...props}
+          <Route path="/CurdPannel" exact render={() => {
+            return <AddProduct
               handelInput={this.handelInput}
-              delete={this.delete}
               products={this.products}
               addNewProduct={this.addNewProduct}
             />

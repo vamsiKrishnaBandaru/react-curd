@@ -180,3 +180,8 @@ footer ul {
     padding: 0;
   }
 }
+@media (max-width: 458px) {
+  .headerLeft {
+    display: none;
+  }
+}

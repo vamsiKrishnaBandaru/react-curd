@@ -18,7 +18,6 @@ class AddProduct extends Component {
       }
    }
    saveChange = (event) => {
-      console.log('save change')
       const {
          name,
          value
@@ -31,7 +30,6 @@ class AddProduct extends Component {
       )
    }
    isDeletedMessage = (state) => {
-      console.log(state)
       if (state === 'No') {
          this.setState({ isDeleted: false });
       } else {
@@ -65,7 +63,6 @@ class AddProduct extends Component {
          errors.image = "Please enter proper image"
       }
       if (Object.keys(errors).length === 0) {
-         console.log('form filled')
          this.setState(
             {
                isFormFilled: true
@@ -75,7 +72,6 @@ class AddProduct extends Component {
          )
          return
       } else {
-         console.log("error")
          this.setState(
             {
                errors
@@ -84,6 +80,7 @@ class AddProduct extends Component {
          return
       }
    }
+
    render() {
       const {
          description,
@@ -114,7 +111,7 @@ class AddProduct extends Component {
                                     <label className='form-label' htmlFor='title'>Title</label>
                                     <textarea
                                        onChange={this.saveChange}
-                                       className='textarea mb-3'
+                                       className='textarea'
                                        id='title'
                                        name="title"
                                        defaultValue={title}
@@ -124,7 +121,7 @@ class AddProduct extends Component {
                                  <div className="row form-group">
                                     <label className='form-label' htmlFor='description'> Description</label>
                                     <textarea
-                                       className='textarea mb-3'
+                                       className='textarea'
                                        onChange={this.saveChange}
                                        id='description'
                                        name="description"
@@ -136,7 +133,7 @@ class AddProduct extends Component {
                                  <div className="row form-group">
                                     <label className='form-label' htmlFor='category'> Category</label>
                                     <textarea
-                                       className='textarea mb-3'
+                                       className='textarea'
                                        onChange={this.saveChange}
                                        id='category'
                                        name="category"
@@ -148,7 +145,7 @@ class AddProduct extends Component {
                                  <div className="row form-group">
                                     <label className='form-label' htmlFor='price'> Price</label>
                                     <textarea
-                                       className='textarea mb-3'
+                                       className='textarea'
                                        onChange={this.saveChange}
                                        id='price'
                                        name="price"
@@ -159,7 +156,7 @@ class AddProduct extends Component {
                                  <div className="row form-group">
                                     <label className='form-label' htmlFor='image'> Image</label>
                                     <textarea
-                                       className='textarea mb-3'
+                                       className='textarea'
                                        onChange={this.saveChange}
                                        id='image'
                                        name="image"

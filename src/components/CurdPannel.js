@@ -13,7 +13,6 @@ class CurdPannel extends Component {
       }
    }
    isDeletedMessage = (state) => {
-      console.log(state)
       if (state === 'No') {
          this.setState({ isDeleted: false });
       } else {
@@ -50,7 +49,6 @@ class CurdPannel extends Component {
          )
          return
       } else {
-         console.log("error")
          this.setState(
             {
                errors
