@@ -26,6 +26,11 @@
   cursor: pointer;
 }
 
+li a {
+  text-decoration: none;
+  text-decoration-line: none;
+  color: black;
+}
 p {
   font-size: 1.2rem;
 }
@@ -139,6 +144,25 @@ footer ul {
   display: flex;
   gap: 2rem;
 }
+.singleProduct {
+  display: flex;
+  gap: 5rem;
+  flex-basis: 0;
+  background: white;
+  margin: 0 20rem;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  min-height: 88vh;
+}
+.singleProduct li {
+  padding: 0;
+  margin: 0;
+}
+.singleProduct img {
+  width: 60%;
+}
 
 /* loader */
 .lds-dual-ring {
@@ -178,6 +202,13 @@ footer ul {
     width: 100%;
     margin: 0;
     padding: 0;
+  }
+  .singleProduct {
+    flex-direction: column;
+    margin: 0;
+  }
+  .singleProduct img {
+    align-self: center;
   }
 }
 @media (max-width: 458px) {

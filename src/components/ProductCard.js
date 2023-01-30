@@ -9,8 +9,10 @@ function ProductCard({ product }) {
             </Link>
          </div>
          <img src={product.image}></img>
-         <h4>{product.title}</h4>
-         <p>{product.description.slice(0, 85)}...</p>
+         <Link to={`/${product.id}`}>
+            <h4>{product.title}</h4>
+            <p>{product.description.slice(0, 85)}...</p>
+         </Link>
          <div className="rating">{product.rating.rate}({product.rating.count})</div>
          <div className="price">${product.price}</div>
       </>

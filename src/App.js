@@ -134,7 +134,7 @@ class App extends React.Component {
             />
           }}>
           </Route>
-          <Route path="/product/:id" render={(props) => {
+          <Route path="/:id" render={(props) => {
             const id = props.match.params.id
             const selectedProduct = this.state.products.find((product) => {
               return product.id.toString() === id
