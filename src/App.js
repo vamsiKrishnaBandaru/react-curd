@@ -4,8 +4,9 @@ import './App.css'
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CurdPannel from "./components/CurdPannel";
-import AllProducts from "./components/AllProducs";
+import AllProducts from "./components/AllProducts";
 import AddProduct from "./components/AddProduct";
+import ShowProduct from "./components/ShowProduct";
 import {
   BrowserRouter as Router,
   Switch,
@@ -130,6 +131,16 @@ class App extends React.Component {
               handelInput={this.handelInput}
               products={this.products}
               addNewProduct={this.addNewProduct}
+            />
+          }}>
+          </Route>
+          <Route path="/product/:id" render={(props) => {
+            const id = props.match.params.id
+            const selectedProduct = this.state.products.find((product) => {
+              return product.id.toString() === id
+            })
+            return <ShowProduct {...props}
+              {...selectedProduct}
             />
           }}>
           </Route>
