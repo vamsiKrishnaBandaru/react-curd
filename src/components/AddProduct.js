@@ -31,9 +31,13 @@ class AddProduct extends Component {
    }
    isDeletedMessage = (state) => {
       if (state === 'No') {
-         this.setState({ isDeleted: false });
+         this.setState({
+            isDeleted: false
+         });
       } else {
-         this.setState({ isDeleted: true });
+         this.setState({
+            isDeleted: true
+         });
       }
    }
 
