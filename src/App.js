@@ -116,7 +116,7 @@ class App extends React.Component {
           <Route exact path="/product/:id" render={(props) => {
             const id = props.match.params.id
             const selectedProduct = this.state.products.find((product) => {
-              return product.id === id
+              return product.id.toString() === id
             })
             return <CurdPannel {...props}
               {...selectedProduct}
