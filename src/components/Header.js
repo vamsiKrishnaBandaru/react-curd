@@ -5,7 +5,10 @@ function Header() {
          <div className="header">
             <Link to="/" className="navbar-brand ">
                <i className="fa fa-shopping-cart"></i> My Cart</Link>
-            <Link to="/" className="navbar-brand"> Home</Link>
+            <div>
+               <Link to="/CurdPannel" className="navbar-brand">Add Product</Link>
+               <Link to="/" className="navbar-brand"> Home</Link>
+            </div>
          </div>
       </nav>
    )

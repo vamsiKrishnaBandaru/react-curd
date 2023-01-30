@@ -2,17 +2,17 @@ import React from "react";
 import axios from "axios";
 import './App.css'
 import Header from "./components/Header";
-import Loader from "./components/Loader";
 import Footer from "./components/Footer";
 import CurdPannel from "./components/CurdPannel";
-import ProductCard from "./components/ProductCard";
 import AllProducts from "./components/AllProducs";
+import AddProduct from "./components/AddProduct";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
+
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -25,15 +25,38 @@ class App extends React.Component {
     this.state = {
       status: this.API_STATES.LOADING,
       products: [],
+      ModifiedProducts: null,
       errorMessage: "",
-    };
+    }
     this.URL = 'https://fakestoreapi.com/products'
   }
 
-  handelInput = (event, id) => {
-    console.log(event)
-    console.log(".............")
+  addNewProduct = (data) => {
     const array = this.state.products
+    let lastId = array[array.length - 1].id
+    console.log(lastId)
+    const newProduct = {
+      id: lastId + 1,
+      title: data.title,
+      description: data.description,
+      price: data.price,
+      category: data.category,
+      rating: {
+        count: 0,
+        rate: 0
+      },
+      image: data.image
+    }
+    array.push(newProduct)
+    console.log(array)
+    this.setState({
+      products: array
+    })
+  }
+
+  handelInput = (event, id) => {
+    console.log('handelInput')
+    let array = this.state.products
     const EditedProduct = array.find(product => {
       return product.id === id
     })
@@ -44,6 +67,7 @@ class App extends React.Component {
   }
 
   delete = (event) => {
+    console.log('delete')
     let products = this.state.products.filter(product => {
       if (product.id === event) {
         return false
@@ -95,10 +119,23 @@ class App extends React.Component {
 
           <Route exact path="/product/:id" render={(props) => {
             const id = props.match.params.id
-            const productToPass = this.state.products.find((product) => {
+            const selectedProduct = this.state.products.find((product) => {
               return product.id.toString() === id
             })
-            return <CurdPannel {...props} {...productToPass} handelInput={this.handelInput} delete={this.delete} />
+            return <CurdPannel {...props}
+              {...selectedProduct}
+              handelInput={this.handelInput}
+              delete={this.delete}
+            />
+          }}>
+          </Route>
+          <Route path="/CurdPannel" exact render={(props) => {
+            return <AddProduct {...props}
+              handelInput={this.handelInput}
+              delete={this.delete}
+              products={this.products}
+              addNewProduct={this.addNewProduct}
+            />
           }}>
           </Route>
         </Switch>

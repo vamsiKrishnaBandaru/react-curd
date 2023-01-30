@@ -1,7 +1,7 @@
 import { Component } from "react"
 import { Link } from "react-router-dom";
 
-class CurdPannel extends Component {
+class AddProduct extends Component {
    constructor(props) {
       super(props);
       this.state = {
@@ -10,7 +10,25 @@ class CurdPannel extends Component {
          errors: {},
          isFormFilled: false,
          isDeleted: false,
+         title: '',
+         description: '',
+         price: '',
+         category: '',
+         image: '',
       }
+   }
+   saveChange = (event) => {
+      console.log('save change')
+      const {
+         name,
+         value
+      } = event.target
+
+      this.setState(
+         {
+            [name]: value
+         }
+      )
    }
    isDeletedMessage = (state) => {
       console.log(state)
@@ -28,24 +46,31 @@ class CurdPannel extends Component {
          title,
          price,
          category,
-      } = this.props
+         image,
+      } = this.state
       let errors = {}
       if (title === "" || title.trim() === "") {
          errors.title = "Please enter the product title"
       }
-      if (description === "" || description.length <= 20) {
+      if (description === "" || description.length <= 20 || title.trim() === "") {
          errors.description = "Description must be at least 20 characters"
       }
-      if (price === "" || isNaN(price) || price === 0) {
+      if (price === "" || isNaN(price) || price === 0 || title.trim() === "") {
          errors.price = "Please enter proper price"
       }
-      if (category === "") {
+      if (category === "" || title.trim() === "") {
          errors.category = "Please enter proper category"
       }
+      if (image === "" || image.trim() === "") {
+         errors.image = "Please enter proper image"
+      }
       if (Object.keys(errors).length === 0) {
+         console.log('form filled')
          this.setState(
             {
                isFormFilled: true
+            }, () => {
+               this.props.addNewProduct(this.state)
             }
          )
          return
@@ -60,6 +85,13 @@ class CurdPannel extends Component {
       }
    }
    render() {
+      const {
+         description,
+         title,
+         price,
+         category,
+         image
+      } = this.state
       return (
          <>
             {
@@ -81,42 +113,34 @@ class CurdPannel extends Component {
                                  <div className="row form-group">
                                     <label className='form-label' htmlFor='title'>Title</label>
                                     <textarea
-                                       onChange={(e) => {
-                                          this.props.handelInput(e, this.props.id)
-                                       }}
+                                       onChange={this.saveChange}
                                        className='textarea mb-3'
                                        id='title'
                                        name="title"
-                                       defaultValue={this.props.title}
+                                       defaultValue={title}
                                     />
                                     <p className='text-danger mb-0'>{this.state.errors.title}</p>
-
                                  </div>
                                  <div className="row form-group">
                                     <label className='form-label' htmlFor='description'> Description</label>
                                     <textarea
                                        className='textarea mb-3'
-                                       onChange={(e) => {
-                                          this.props.handelInput(e, this.props.id)
-                                       }}
+                                       onChange={this.saveChange}
                                        id='description'
                                        name="description"
-                                       defaultValue={this.props.description}
+                                       defaultValue={description}
                                        rows='4'
                                     />
                                     <p className='text-danger mb-0'>{this.state.errors.description}</p>
-
                                  </div>
                                  <div className="row form-group">
                                     <label className='form-label' htmlFor='category'> Category</label>
                                     <textarea
                                        className='textarea mb-3'
-                                       onChange={(e) => {
-                                          this.props.handelInput(e, this.props.id)
-                                       }}
+                                       onChange={this.saveChange}
                                        id='category'
                                        name="category"
-                                       defaultValue={this.props.category}
+                                       defaultValue={category}
                                     />
                                     <p className='text-danger mb-0'>{this.state.errors.category}</p>
 
@@ -125,33 +149,38 @@ class CurdPannel extends Component {
                                     <label className='form-label' htmlFor='price'> Price</label>
                                     <textarea
                                        className='textarea mb-3'
-                                       onChange={(e) => {
-                                          this.props.handelInput(e, this.props.id)
-                                       }}
+                                       onChange={this.saveChange}
                                        id='price'
                                        name="price"
-                                       defaultValue={this.props.price}
+                                       defaultValue={price}
                                     />
                                     <p className='text-danger mb-0'>{this.state.errors.price}</p>
                                  </div>
+                                 <div className="row form-group">
+                                    <label className='form-label' htmlFor='image'> Image</label>
+                                    <textarea
+                                       className='textarea mb-3'
+                                       onChange={this.saveChange}
+                                       id='image'
+                                       name="image"
+                                       defaultValue={image}
+                                    />
+                                    <p className='text-danger mb-0'>{this.state.errors.image}</p>
+                                 </div>
                                  <div className="form-right-btns">
                                     <div className="form-btns">
-
                                        {
                                           !this.state.isDeleted
                                              ?
                                              <div>
                                                 <button type="button" className="btn btn-danger" onClick={() => {
                                                    this.isDeletedMessage('Yes')
-                                                }}>
-                                                   <i className="fa-solid fa-trash-can"></i> Remove Item</button>
+                                                }}> Cancel </button>
                                              </div>
                                              :
                                              <div className="deleteConfirmation">
                                                 <Link to="/">
-                                                   <button className="btn btn-primary" onClick={() => {
-                                                      this.props.delete(this.props.id)
-                                                   }}>Yes</button>
+                                                   <button className="btn btn-primary">Yes</button>
                                                 </Link>
                                                 <span>
                                                    <button className="btn btn-danger ml-5" onClick={() => {
@@ -175,4 +204,4 @@ class CurdPannel extends Component {
 }
 
 
-export default CurdPannel;
+export default AddProduct;
