@@ -1,5 +1,6 @@
 import { Component } from "react"
 import { Link } from "react-router-dom";
+import validator from "validator";
 
 class AddProduct extends Component {
    constructor(props) {
@@ -63,8 +64,8 @@ class AddProduct extends Component {
       if (category === "" || title.trim() === "") {
          errors.category = "Please enter proper category"
       }
-      if (image === "" || image.trim() === "") {
-         errors.image = "Please enter proper image"
+      if (image === "" || image.trim() === "" || !validator.isURL(image)) {
+         errors.image = "Please enter proper image URL"
       }
       if (Object.keys(errors).length === 0) {
          this.setState(
